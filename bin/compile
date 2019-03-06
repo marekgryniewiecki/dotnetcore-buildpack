@@ -55,8 +55,11 @@ fi
 
 export NUGET_PACKAGES="${CACHE_DIR}/nuget/cache"
 
+echo "build ${PROJECT_FILE}"
+dotnet build $PROJECT_FILE --configuration ${BUILD_CONFIG:-Release}
+
 echo "publish ${PROJECT_FILE}"
-dotnet publish $PROJECT_FILE --output ${BUILD_DIR}/heroku_output --configuration ${BUILD_CONFIG:-Release} --runtime linux-x64
+dotnet publish $PROJECT_FILE --no-restore --no-build --output ${BUILD_DIR}/heroku_output --configuration ${BUILD_CONFIG:-Release} --runtime linux-x64
 
 if [ ! -f ${BUILD_DIR}/Procfile ]; then
 	cat << EOT >> ${BUILD_DIR}/Procfile
