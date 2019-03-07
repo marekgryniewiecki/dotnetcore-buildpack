@@ -19,4 +19,4 @@ cd $BUILD_DIR
 
 echo "test ${BUILD_DIR}"
 export PATH="${DOTNET_SDK_LOCATION}:${PATH}"
-dotnet test -v q --no-build --no-restore --output ${BUILD_DIR}/test_output
+dotnet test -v q --no-build --no-restore
