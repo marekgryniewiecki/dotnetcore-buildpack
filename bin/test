@@ -9,6 +9,9 @@ BUILD_DIR=${1:-}
 ENV_DIR=${2:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
+source $BP_DIR/lib/utils
+export_env_dir "$ENV_DIR"
+
 cd $BUILD_DIR
 
 if [ -z ${PROJECT_FILE:-} ]; then
@@ -20,6 +23,6 @@ if [ -z ${PROJECT_NAME:-} ]; then
 fi
 
 echo "test ${PROJECT_FILE}"
-echo "path ${PATH}"
-ls ${BUILD_DIR}/.heroku/dotnet
+echo "path ${DOTNET_SDK_LOCATION}"
+export PATH="${DOTNET_SDK_LOCATION}:${PATH}"
 dotnet test $PROJECT_FILE -v q --no-build --no-restore --output ${BUILD_DIR}/test_output
