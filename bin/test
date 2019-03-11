@@ -19,4 +19,5 @@ cd $BUILD_DIR
 
 echo "test ${BUILD_DIR}"
 export PATH="${DOTNET_SDK_LOCATION}:${PATH}"
-dotnet test -v q --no-build --no-restore
+dotnet test -v q --no-build --no-restore -a $BP_DIR/lib/testadapter -l tap
+cat TestResults/TestResults.txt
