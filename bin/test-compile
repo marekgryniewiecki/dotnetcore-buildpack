@@ -34,6 +34,9 @@ DOTNET_RUNTIME_VERSION=${DOTNET_RUNTIME_VERSION:-6.0.11}
 
 echo "Installing dotnet"
 install_dotnet $BUILD_DIR $CACHE_DIR $DOTNET_SDK_VERSION $DOTNET_RUNTIME_VERSION
+dotnet --list-sdks
+dotnet --list-runtimes
+
 
 export PATH="${BUILD_DIR}/.heroku/dotnet:${PATH}"
 
