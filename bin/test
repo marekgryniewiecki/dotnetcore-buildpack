@@ -33,4 +33,8 @@ if [ -z ${PROJECT_NAME:-} ]; then
 fi
 
 echo "build ${PROJECT_FILE}"
+echo $PATH
+local dircont=$(ls -la ${BUILD_DIR}/.heroku/dotnet)
+echo $dircont
+
 dotnet test $PROJECT_FILE -v q --no-build --no-restore --output ${BUILD_DIR}/test_output
