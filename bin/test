@@ -45,4 +45,4 @@ echo $dircont
 echo $ENV_DIR
 echo $BP_DIR
 
-dotnet test $PROJECT_FILE -v q --no-build --no-restore --output ${BUILD_DIR}/test_output
+dotnet test $PROJECT_FILE -v d --output ${BUILD_DIR}/test_output
