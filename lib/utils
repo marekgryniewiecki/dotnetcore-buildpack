@@ -46,6 +46,17 @@ function install_dotnet() {
   cp -r ${DOTNET_CACHE_LOCATION}/runtime ${BUILD_DIR}/.heroku/dotnet
 }
 
+function export_dotnet_sdk_path() {
+  local BUILD_DIR="$1"
+  local CACHE_DIR="$2"
+  local DOTNET_SDK_VERSION="$3"
+
+  local DOTNET_CACHE_LOCATION=${CACHE_DIR}/dotnet/${DOTNET_SDK_VERSION}
+    
+  topic "Export dotnet to Path"
+  export PATH="${DOTNET_CACHE_LOCATION}/sdk:$PATH"
+}
+
 export_env_dir() {
   local env_dir=$1
   if [ -d "$env_dir" ]; then
