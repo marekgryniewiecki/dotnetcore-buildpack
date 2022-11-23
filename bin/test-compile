@@ -34,8 +34,10 @@ DOTNET_RUNTIME_VERSION=${DOTNET_RUNTIME_VERSION:-6.0.11}
 
 echo "Installing dotnet"
 install_dotnet $BUILD_DIR $CACHE_DIR $DOTNET_SDK_VERSION $DOTNET_RUNTIME_VERSION
-dotnet --list-sdks
-dotnet --list-runtimes
+
+
+#tries to get 1st and 2nd capturing group from PCRE regex for .net 6 sdk path
+export DOTNET_SDK_LOCATION=$(dotnet --list-sdks | sed -nE 's/(6\..+)\s\[(.+)\]/\2\/\1/p')
 
 
 export PATH="${BUILD_DIR}/.heroku/dotnet:${PATH}"
