@@ -15,13 +15,15 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 ### Load dependencies
 source $BP_DIR/lib/utils
 
-#export_env_dir "$ENV_DIR"
+export_env_dir "$ENV_DIR"
 export NUGET_XMLDOC_MODE=${NUGET_XMLDOC_MODE:-skip}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=${DOTNET_SKIP_FIRST_TIME_EXPERIENCE:-1}
 export DOTNET_CLI_TELEMETRY_OPTOUT=${DOTNET_CLI_TELEMETRY_OPTOUT:-1}
 
-export PATH="${BUILD_DIR}/.heroku/dotnet:${PATH}"
-export PATH="${BUILD_DIR}/.heroku/dotnet/runtime:${PATH}"
+#export PATH="${BUILD_DIR}/.heroku/dotnet:${PATH}"
+#export PATH="${BUILD_DIR}/.heroku/dotnet/runtime:${PATH}"
+#hardcoded!!! todo fix
+export PATH="/tmp/cache/dotnet/6.0.403/sdk:${PATH}"
 
 #export_dotnet_sdk_path $BUILD_DIR $CACHE_DIR $DOTNET_SDK_VERSION
 
@@ -41,5 +43,6 @@ echo $BUILD_DIR
 export dircont=$(ls -la ${BUILD_DIR}/.heroku/dotnet/runtime)
 echo $dircont
 echo $ENV_DIR
+echo $BP_DIR
 
 dotnet test $PROJECT_FILE -v q --no-build --no-restore --output ${BUILD_DIR}/test_output
